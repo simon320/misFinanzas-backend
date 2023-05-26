@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { PfxService } from './pfx.service';
 import { CreatePfxDto } from './dto/create-pfx.dto';
 import { UpdatePfxDto } from './dto/update-pfx.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('pfx')
 @Controller('pfx')
 export class PfxController {
   constructor(private readonly pfxService: PfxService) {}

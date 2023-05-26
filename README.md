@@ -38,10 +38,25 @@ git push heroku main
 * MongoDB
 * Nest
 
-### Al crear proyecto desde cero:
+# Al crear proyecto desde cero:
 ```
 npm i --save @nestjs/config
-yarn add mongoose
-yarn add @nestjs/mongoose
+```
+
+### Para user con mongoDB y validar:
+```
+yarn add @nestjs/mongoose mongoose
 yarn add class-transformer class-validator
+```
+
+### Para documentar con Swagger:
+```
+npm install --save @nestjs/swagger
+```
+
+### Para Autenticacion:
+```
+yarn add --save @nestjs/jwt passport-jwt
+npm i --save-dev @types/passport-jwt
+yarn add bcrypt --save
 ```
