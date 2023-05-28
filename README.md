@@ -56,7 +56,9 @@ npm install --save @nestjs/swagger
 
 ### Para Autenticacion:
 ```
-yarn add --save @nestjs/jwt passport-jwt
-npm i --save-dev @types/passport-jwt
+npm install --save @nestjs/jwt
+npm install --save @nestjs/passport passport passport-local
+npm install --save-dev @types/passport-local
+npm i --save @types/passport-jwt
 yarn add bcrypt --save
 ```

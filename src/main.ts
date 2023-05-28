@@ -9,6 +9,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1/');
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('misFinanzas-API Documentacion')
     .setDescription('Rest API de aplicacion de finanzas')
     .setVersion('1.0')

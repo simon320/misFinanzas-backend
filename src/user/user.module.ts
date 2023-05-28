@@ -4,6 +4,7 @@ import { UserController } from './user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './entities/user.entity';
 import { Pfx, PfxSchema } from 'src/pfx/entities/pfx.entity';
+import { JwtStrategy } from 'src/auth/jwt.strategy';
 
 
 @Module({
