@@ -8,6 +8,7 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/user/entities/user.entity';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { RegisterAuthDto } from './dto/register-auth.dto';
+import { Console } from 'console';
 
 
 @Injectable()
@@ -31,25 +32,21 @@ export class AuthService {
   }
 
   async login(loginAuthDto: LoginAuthDto) {
-    try {
-      const { mail, password } = loginAuthDto;
-      const findUser = await this.userModel.findOne({ mail });
-  
-      if( !findUser ) throw new HttpException('USER_NOT_FOUND', 404);
-      
-      const checkPass = await compare( password, findUser.password )
-      if( !checkPass ) throw new HttpException('PASSWORD_INCORRECT', 403);
-  
-      const payload = { id:findUser._id, name: findUser.nickname }
-      const token = this.jwtService.sign(payload)
-      const data = {
-        user: findUser,
-        token
-      }
-      return data;
-    } catch( error ) {
-      console.error( error );
+    const { mail, password } = loginAuthDto;
+    const findUser = await this.userModel.findOne({ mail });
+    console.log( findUser )
+    if( !findUser ) throw new HttpException('USER_NOT_FOUND', 404);
+    
+    const checkPass = await compare( password, findUser.password )
+    if( !checkPass ) throw new HttpException('PASSWORD_INCORRECT', 403);
+
+    const payload = { id:findUser._id, name: findUser.nickname }
+    const token = this.jwtService.sign(payload)
+    const data = {
+      user: findUser,
+      token
     }
+    return data;
   }
 
   private handleError(error: any) {

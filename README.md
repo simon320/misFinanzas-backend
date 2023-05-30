@@ -62,3 +62,9 @@ npm install --save-dev @types/passport-local
 npm i --save @types/passport-jwt
 yarn add bcrypt --save
 ```
+
+### Agregar en .gitignore:
+```
+/mongo
+.env
+```
