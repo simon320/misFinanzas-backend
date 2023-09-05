@@ -34,7 +34,6 @@ export class AuthService {
   async login(loginAuthDto: LoginAuthDto) {
     const { mail, password } = loginAuthDto;
     const findUser = await this.userModel.findOne({ mail });
-    console.log( findUser )
     if( !findUser ) throw new HttpException('USER_NOT_FOUND', 404);
     
     const checkPass = await compare( password, findUser.password )

@@ -2,7 +2,7 @@ import { IsInt, IsNotEmpty, IsString } from "class-validator";
 import { DescriptionDay, ForeignCurrency } from "src/common/interfaces/interface";
 
 
-export class CreatePfxDto {
+export class CreateWalletDto {
     @IsString()
     userId: string;
 
@@ -10,7 +10,7 @@ export class CreatePfxDto {
     money_acount: number;
 
     @IsNotEmpty()
-    money_saved: ForeignCurrency[]
+    money_saved: ForeignCurrency[] | 0
 
     @IsInt()
     money_per_day: number;

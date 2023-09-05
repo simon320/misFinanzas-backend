@@ -1,6 +1,6 @@
 import { PartialType } from '@nestjs/swagger';
 import { LoginAuthDto } from './login-auth.dto';
-import { IsString, MaxLength, MinLength } from 'class-validator';
+import { IsBoolean, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class RegisterAuthDto extends PartialType(LoginAuthDto) {
 
@@ -11,4 +11,7 @@ export class RegisterAuthDto extends PartialType(LoginAuthDto) {
 
     @IsString()
     photo: string
+
+    @IsBoolean()
+    first: boolean
 }

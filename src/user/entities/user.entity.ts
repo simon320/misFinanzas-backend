@@ -17,6 +17,9 @@ export class User extends Document {
     @Prop()
     photo: string;
 
+    @Prop()
+    first: boolean;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass( User );

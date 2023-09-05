@@ -3,7 +3,7 @@ import { Document } from "mongoose";
 import { DescriptionDay, ForeignCurrency } from "src/common/interfaces/interface";
 
 @Schema()
-export class Pfx extends Document {
+export class Wallet extends Document {
     @Prop()
     userId: string;
     
@@ -26,4 +26,4 @@ export class Pfx extends Document {
     days: DescriptionDay[]
 }
 
-export const PfxSchema = SchemaFactory.createForClass( Pfx );
+export const WalletSchema = SchemaFactory.createForClass( Wallet );

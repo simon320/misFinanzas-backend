@@ -1,4 +1,4 @@
-import { IsString, MinLength } from "class-validator";
+import { IsBoolean, IsOptional, IsString, MinLength } from "class-validator";
 
 
 export class CreateUserDto {
@@ -14,5 +14,9 @@ export class CreateUserDto {
     password: string;
 
     @IsString()
-    photo: string
+    photo: string;
+
+    @IsOptional()
+    @IsBoolean()
+    first?: boolean;
 }

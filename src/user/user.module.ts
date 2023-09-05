@@ -3,8 +3,8 @@ import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './entities/user.entity';
-import { Pfx, PfxSchema } from 'src/pfx/entities/pfx.entity';
 import { JwtStrategy } from 'src/auth/jwt.strategy';
+import { Wallet, WalletSchema } from 'src/wallet/entities/wallet.entity';
 
 
 @Module({
@@ -17,8 +17,8 @@ import { JwtStrategy } from 'src/auth/jwt.strategy';
         schema: UserSchema,
       },
       {
-        name: Pfx.name,
-        schema: PfxSchema,
+        name: Wallet.name,
+        schema: WalletSchema,
       }
     ])
   ]

@@ -4,7 +4,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
-import { Pfx } from 'src/pfx/entities/pfx.entity';
+import { Wallet } from 'src/wallet/entities/wallet.entity';
+import { IsBoolean } from 'class-validator';
+
 
 @Injectable()
 export class UserService {
@@ -13,8 +15,8 @@ export class UserService {
     @InjectModel( User.name )
     private readonly userModel: Model<User>,
 
-    @InjectModel( Pfx.name )
-    private readonly pfxModel: Model<Pfx>,
+    @InjectModel( Wallet.name )
+    private readonly walletModel: Model<Wallet>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -31,23 +33,48 @@ export class UserService {
         days: []
       }
 
-      await this.pfxModel.create( pxf );
+      await this.walletModel.create( pxf );
       return user;
     } catch (error) {
       this.handleExceptions(error);
     }
   }
 
+
+
   async findAll() {
     return await this.userModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+
+
+  async findOne(id: string) {
+    return await this.userModel.findOne({ _id: id});
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+
+
+  async setFirstLogin(id: string) {
+    let user = await this.userModel.findOne({ _id: id});
+
+    user.first = false;
+
+    return await this.userModel.updateOne( { _id: id }, user );
+  }
+
+
+
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    try {
+      await this.userModel.updateOne( { _id: id }, updateUserDto )
+
+      return { 
+        _id: id,
+        ...UpdateUserDto 
+      };
+    } catch (error) {
+      this.handleExceptions(error);
+    }
   }
 
   remove(id: number) {
