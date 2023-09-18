@@ -13,8 +13,8 @@ export class WalletService {
     private readonly walletModel: Model<Wallet>,
   ) {}
 
+  
   async create(createWalletDto: CreateWalletDto) {
-
     try {
       await this.walletModel.create( createWalletDto );
       return createWalletDto;
