@@ -22,13 +22,9 @@ export class WalletService {
       this.handleExceptions(error);
     }
   }
-
-  async findAll() {
-    return await this.walletModel.find();
-  }
   
   async findAllById(id: string) {
-    const allWallet: Wallet[] = await this.findAll();
+    const allWallet: Wallet[] = await this.walletModel.find();
     
     let walletById: Wallet;
     walletById = allWallet.find( ( wallet ) => wallet.userId == id );
@@ -36,12 +32,10 @@ export class WalletService {
     return walletById;
   }
 
-  update(id: string, updateWalletDto: UpdateWalletDto) {
-    return `This action updates a #${id} wallet`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} wallet`;
+  async update(id: string, updateWalletDto: UpdateWalletDto) {
+    const wallet: Wallet = await this.findAllById(id);
+    
+    return await this.walletModel.findByIdAndUpdate(wallet._id, updateWalletDto)
   }
 
   private handleExceptions( error: any ) {

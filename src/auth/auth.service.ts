@@ -48,6 +48,19 @@ export class AuthService {
     return data;
   }
 
+  async getUserById(id: string) {
+    const findUser = await this.userModel.findById( id );
+    if( !findUser ) throw new HttpException('USER_NOT_FOUND', 404);
+
+    const payload = { id:findUser._id, name: findUser.nickname }
+    const token = this.jwtService.sign(payload)
+    const data = {
+      user: findUser,
+      token
+    }
+    return data;
+  }
+
   private handleError(error: any) {
     if( error.code == 11000 ) throw new BadRequestException(`Ya existe un usuario con ese Email.`)
     console.error(error);

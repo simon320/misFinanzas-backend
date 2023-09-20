@@ -14,11 +14,6 @@ export class WalletController {
     return this.walletService.create(createWalletDto);
   }
 
-  @Get()
-  findAll() {
-    return this.walletService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.walletService.findAllById(id);
@@ -29,8 +24,4 @@ export class WalletController {
     return this.walletService.update(id, updateWalletDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.walletService.remove(id);
-  }
 }
