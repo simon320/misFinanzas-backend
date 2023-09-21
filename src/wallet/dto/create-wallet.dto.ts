@@ -1,5 +1,5 @@
 import { IsInt, IsNotEmpty, IsString } from "class-validator";
-import { DescriptionDay, ForeignCurrency } from "src/common/interfaces/interface";
+import { DescriptionDay, ForeignCurrency, Movement } from "src/common/interfaces/interface";
 
 
 export class CreateWalletDto {
@@ -20,6 +20,9 @@ export class CreateWalletDto {
 
     @IsString()
     end_selected_day: string;
+
+    @IsNotEmpty()
+    movement: Movement[]
 
     @IsNotEmpty()
     days: DescriptionDay[]

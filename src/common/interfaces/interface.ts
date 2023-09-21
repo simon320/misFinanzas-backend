@@ -12,6 +12,7 @@ export interface WalletInterface {
   money_per_day: number
   start_selected_day: Date
   end_selected_day: Date
+  movement: Movement[]
   days: DescriptionDay[]
 }
 
@@ -28,7 +29,9 @@ export interface DescriptionDay {
   money_per_day?: number
 }
 
-export interface Movement {  
+export interface Movement {
+  day: Date
   description: string
   amount: number
+  tipe: 'expense' | 'income'
 }
