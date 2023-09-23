@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
-import { DescriptionDay, ForeignCurrency } from "src/common/interfaces/interface";
+import { DescriptionDay, ForeignCurrency, Movement } from "src/common/interfaces/interface";
 
 @Schema()
 export class Wallet extends Document {
@@ -21,6 +21,9 @@ export class Wallet extends Document {
 
     @Prop() 
     end_selected_day: string;
+
+    @Prop() 
+    movement: Movement[];
 
     @Prop()
     days: DescriptionDay[]
