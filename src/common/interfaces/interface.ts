@@ -30,6 +30,7 @@ export interface DescriptionDay {
 }
 
 export interface Movement {
+  id: string
   day: Date
   description: string
   amount: number
